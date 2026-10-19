@@ -40,9 +40,9 @@ def test_chunk_statute():
     
     chunks = chunk_statute(text, metadata)
     assert len(chunks) == 2
-    assert chunks[0].metadata.section_or_citation == "Section 1."
+    assert chunks[0].metadata.section_or_citation == "Section 1"
     assert "Short title." in chunks[0].text
-    assert chunks[1].metadata.section_or_citation == "Section 2."
+    assert chunks[1].metadata.section_or_citation == "Section 2"
     assert "Every person" in chunks[1].text
     assert chunks[0].chunk_id != chunks[1].chunk_id
 

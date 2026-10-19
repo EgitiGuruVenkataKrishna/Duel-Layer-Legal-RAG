@@ -1,0 +1,12 @@
+title = "Gitleaks Configuration for NyayaSetu"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+    '''\.env\.example$''',
+    '''eval/.*\.jsonl$''',
+    '''data/MANIFEST\.json$'''
+]

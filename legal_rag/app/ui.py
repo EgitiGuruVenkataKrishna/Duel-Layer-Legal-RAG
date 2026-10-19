@@ -5,7 +5,7 @@ API_URL = "http://localhost:8000/api/v1/query"
 
 st.set_page_config(page_title="Indian Legal RAG", page_icon="⚖️", layout="centered")
 
-st.title("⚖️ Zero-Hallucination Legal RAG")
+st.title("⚖️ NyayaSetu: Verified Legal Information System")
 st.markdown("Powered by **Dual-Tier LangGraph Architecture** & **Groq Llama 3.1**")
 
 if "chat_history" not in st.session_state:
