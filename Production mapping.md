@@ -1,6 +1,6 @@
-# Production Deployment Architecture: Zero-Hallucination Legal RAG
+# Deployment Architecture: Verified Legal Information System
 
-The objective is to transition NyayaRAG from a local prototype to a highly scalable, production-grade cloud architecture using the best-in-class free-tier resources. This guarantees zero-hallucination legal analysis with high concurrency support, distinguishing our system from generic LLMs through strict hybrid-retrieval and structured metadata mapping.
+The objective is to transition the system from a local prototype to a scalable cloud architecture using verified retrieval. This provides evidence-grounded legal analysis with high concurrency support, distinguishing our system from generic LLMs through strict hybrid-retrieval and structured metadata mapping.
 
 ## User Review Required
 
