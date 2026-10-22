@@ -1,0 +1,78 @@
+# NyayaSetu data/sources.yaml
+# Authoritative list of source URLs the downloader is permitted to fetch.
+# R7: only URLs listed here may be fetched by scripts.
+
+statutes:
+  - id: BNS-2023
+    act_name: "Bharatiya Nyaya Sanhita, 2023"
+    file_name: "Bharatiya Nyaya Sanhita (BNS), 2023.pdf"
+    relative_path: "data/raw/statutes/Bharatiya Nyaya Sanhita (BNS), 2023.pdf"
+    source_url: "https://egazette.gov.in/WriteReadData/2023/250883.pdf"
+    expected_sections: 358
+    effective_date: "2024-07-01"
+    status: in_force
+
+  - id: BNSS-2023
+    act_name: "Bharatiya Nagarik Suraksha Sanhita, 2023"
+    file_name: "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023.pdf"
+    relative_path: "data/raw/statutes/Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023.pdf"
+    source_url: "https://egazette.gov.in/WriteReadData/2023/250884.pdf"
+    expected_sections: 531
+    effective_date: "2024-07-01"
+    status: in_force
+
+  - id: BSA-2023
+    act_name: "Bharatiya Sakshya Adhiniyam, 2023"
+    file_name: "Bharatiya Sakshya Adhiniyam (BSA), 2023.pdf"
+    relative_path: "data/raw/statutes/Bharatiya Sakshya Adhiniyam (BSA), 2023.pdf"
+    source_url: "https://egazette.gov.in/WriteReadData/2023/250882.pdf"
+    expected_sections: 170
+    effective_date: "2024-07-01"
+    status: in_force
+
+  - id: COI-1950
+    act_name: "The Constitution of India"
+    file_name: "The Constitution of India.pdf"
+    relative_path: "data/raw/statutes/The Constitution of India.pdf"
+    source_url: "https://cdnbbsr.s3waas.gov.in/s380537a945c7abb748bb21a79b81b2aac/uploads/2024/05/2024050195.pdf"
+    expected_sections: 395
+    effective_date: "1950-01-26"
+    status: in_force
+
+  - id: IPC-1860
+    act_name: "The Indian Penal Code, 1860"
+    file_name: "The Indian Penal Code (IPC), 1860.pdf"
+    relative_path: "data/raw/statutes/The Indian Penal Code (IPC), 1860.pdf"
+    source_url: "https://www.indiacode.nic.in/bitstream/123456789/15240/1/the_indian_penal_code%2C_1860.pdf"
+    expected_sections: 511
+    effective_date: "1862-01-01"
+    repealed_date: "2024-07-01"
+    status: repealed_transitional
+
+  - id: CRPC-1973
+    act_name: "The Code of Criminal Procedure, 1973"
+    file_name: "The Code of Criminal Procedure (CrPC), 1973.pdf"
+    relative_path: "data/raw/statutes/The Code of Criminal Procedure (CrPC), 1973.pdf"
+    source_url: "https://www.indiacode.nic.in/bitstream/123456789/15272/1/the_code_of_criminal_procedure%2C_1973.pdf"
+    expected_sections: 484
+    effective_date: "1974-04-01"
+    repealed_date: "2024-07-01"
+    status: repealed_transitional
+
+  - id: IEA-1872
+    act_name: "The Indian Evidence Act, 1872"
+    file_name: "The Indian Evidence Act (IEA), 1872.pdf"
+    relative_path: "data/raw/statutes/The Indian Evidence Act (IEA), 1872.pdf"
+    source_url: "https://www.indiacode.nic.in/bitstream/123456789/15351/1/the_indian_evidence_act%2C_1872.pdf"
+    expected_sections: 167
+    effective_date: "1872-09-01"
+    repealed_date: "2024-07-01"
+    status: repealed_transitional
+
+judgments:
+  - id: SC-LANDMARK
+    collection_name: "Landmark Supreme Court Judgments"
+    file_name: "Landmark Supreme Court Judgments.pdf"
+    relative_path: "data/raw/judgments/Landmark Supreme Court Judgments.pdf"
+    source_url: "https://main.sci.gov.in/"
+    status: reference

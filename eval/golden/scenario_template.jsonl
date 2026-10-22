@@ -1,0 +1,19 @@
+# Scenario question template for eval/golden/scenarios.jsonl
+# STATUS: TEMPLATE ONLY – 50 rows needed by human law student
+# See docs/HUMAN_TODO.md for instructions.
+#
+# Schema (one JSON object per line):
+# {
+#   "id": "SC-NNN",          -- e.g. SC-001
+#   "type": "scenario",
+#   "question": "...",       -- narrative fact pattern, ends with a legal question
+#   "expected_ids": [...],   -- list of BNS/BNSS/BSA/IPC/etc section IDs that should be retrieved
+#   "expected_points": [...],-- key legal points the answer must contain
+#   "answerable": true,
+#   "provenance": "human",   -- must be 'human' for all scenario rows
+#   "needs_review": true     -- all scenario rows need lawyer review
+# }
+#
+# Example:
+{"id": "SC-001", "type": "scenario", "question": "A person snatched a mobile phone from another person's hand on the street and ran away. What BNS offence has been committed and what is the punishment?", "expected_ids": ["BNS-304"], "expected_points": ["snatching", "BNS-304", "imprisonment up to 3 years", "fine"], "answerable": true, "provenance": "human", "needs_review": true}
+# ... add 49 more rows below this line (SC-002 through SC-050)

@@ -1,14 +1,32 @@
+import os
+from pathlib import Path
 from typing import Any, Dict, List, Tuple
+
 from sentence_transformers import CrossEncoder
 
 
-class Reranker:
-    """
-    Cross-Encoder Reranker for re-scoring retrieved candidates based on deep query-document interaction.
-    """
+def _default_reranker_model() -> str:
+    """Read reranker model from configs/retrieval.yaml active mode, then env, then fallback."""
+    try:
+        import yaml  # type: ignore[import-untyped]
+        cfg_path = Path(__file__).resolve().parents[4] / "configs" / "retrieval.yaml"
+        if cfg_path.exists():
+            cfg = yaml.safe_load(cfg_path.read_text())
+            active = cfg.get("active", "")
+            mode = cfg.get("modes", {}).get(active, {})
+            reranker_cfg = mode.get("reranker", {})
+            if reranker_cfg.get("model"):
+                return reranker_cfg["model"]
+    except Exception:
+        pass
+    return os.environ.get("RERANKER_MODEL", "BAAI/bge-reranker-v2-m3")
 
-    def __init__(self, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
-        self.model_name = model_name
+
+class Reranker:
+    """Cross-Encoder Reranker; model ID sourced from configs/retrieval.yaml."""
+
+    def __init__(self, model_name: str | None = None):
+        self.model_name = model_name or _default_reranker_model()
         self.model: CrossEncoder | None = None
 
     def _load_model(self):

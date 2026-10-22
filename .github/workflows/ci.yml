@@ -2,7 +2,7 @@ name: NyayaSetu CI
 
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [ main, feature/*, phase1, phase2 ]
   pull_request:
     branches: [ main ]
 
@@ -31,4 +31,18 @@ jobs:
 
       - name: Run unit & parser tests
         run: |
-          pytest tests/ -v
+          pytest tests/ -q -x --tb=short 2>&1 | tail -30
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
