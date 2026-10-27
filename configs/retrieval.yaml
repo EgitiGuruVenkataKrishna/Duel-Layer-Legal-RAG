@@ -1,0 +1,58 @@
+# NyayaSetu Retrieval Configuration
+# Switch active retrieval mode here; all model IDs must come from this file.
+
+active: hybrid_rrf_rerank_parent_child
+
+modes:
+  bm25:
+    retriever: bm25
+    top_k: 20
+
+  dense_miniLM:
+    retriever: dense
+    model: sentence-transformers/all-MiniLM-L6-v2
+    top_k: 20
+    index_dir: data/processed/faiss_all_MiniLM_L6_v2
+
+  dense_bge_m3:
+    retriever: dense
+    model: BAAI/bge-m3
+    top_k: 20
+    index_dir: data/processed/faiss_bge_m3
+
+  hybrid_rrf:
+    retriever: hybrid_rrf
+    bm25_top_k: 20
+    dense_top_k: 20
+    dense_model: sentence-transformers/all-MiniLM-L6-v2
+    rrf_k: 60
+
+  hybrid_rrf_rerank:
+    retriever: hybrid_rrf
+    bm25_top_k: 20
+    dense_top_k: 20
+    dense_model: sentence-transformers/all-MiniLM-L6-v2
+    rrf_k: 60
+    reranker:
+      model: BAAI/bge-reranker-v2-m3
+      top_n: 5
+
+  hybrid_rrf_rerank_parent_child:
+    retriever: hybrid_rrf
+    bm25_top_k: 20
+    dense_top_k: 20
+    dense_model: sentence-transformers/all-MiniLM-L6-v2
+    rrf_k: 60
+    reranker:
+      model: BAAI/bge-reranker-v2-m3
+      top_n: 20
+    parent_child: true
+    final_top_k: 5
+
+ablation_order:
+  - bm25
+  - dense_miniLM
+  - dense_bge_m3
+  - hybrid_rrf
+  - hybrid_rrf_rerank
+  - hybrid_rrf_rerank_parent_child
