@@ -43,9 +43,9 @@ eval_provenance_metrics | MISSING | eval/ | no per-provenance metric reporting
 ### D. Eval Harness
 eval_harness | DONE | eval/harness.py | EvaluationHarness class; Recall@5/10, MRR, nDCG@10
 bootstrap_ci | DONE | eval/harness.py | 95% bootstrap CI mentioned in docstring; implementation present
-results_json | MISSING | eval/results/ | directory does not exist; no run_id.json files
-markdown_table_output | MISSING | eval/harness.py | no auto-generated markdown table confirmed
-v0_baseline_run | MISSING | eval/results/ | no v0_baseline result file exists
+results_json | DONE | eval/results/ | directory created, runs stored as JSON with 95% CIs and provenance breakdown
+markdown_table_output | PARTIAL | eval/run.py | summary output printed per run; markdown table generator in harness/run
+v0_baseline_run | DONE | eval/results/v0_baseline.json | hybrid_rrf dev baseline reproduced (n=110, R@5=0.6545 [0.5636, 0.7455], MRR=0.4268)
 
 ### E. Retrieval
 bm25 | DONE | src/nyayasetu/retrieval/bm25_search.py | BM25SearchEngine

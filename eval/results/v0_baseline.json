@@ -1,0 +1,59 @@
+{
+  "run_id": "v0_baseline",
+  "mode": "hybrid_rrf",
+  "split": "dev",
+  "timestamp": "2026-10-26T14:40:08.403700+00:00",
+  "metrics": {
+    "recall_at_5": {
+      "mean": 0.6545,
+      "ci95_lo": 0.5636,
+      "ci95_hi": 0.7455
+    },
+    "recall_at_10": {
+      "mean": 0.8636,
+      "ci95_lo": 0.8,
+      "ci95_hi": 0.9182
+    },
+    "mrr": {
+      "mean": 0.4268,
+      "ci95_lo": 0.3583,
+      "ci95_hi": 0.4983
+    },
+    "ndcg_at_10": {
+      "mean": 0.5292,
+      "ci95_lo": 0.4607,
+      "ci95_hi": 0.592
+    },
+    "latency_p50_ms": 25.1,
+    "latency_p95_ms": 37.4,
+    "n": 110,
+    "by_provenance": {
+      "auto": {
+        "n": 92,
+        "recall_at_5": {
+          "mean": 0.7174,
+          "ci95_lo": 0.6196,
+          "ci95_hi": 0.8043
+        },
+        "mrr": {
+          "mean": 0.4607,
+          "ci95_lo": 0.3892,
+          "ci95_hi": 0.5339
+        }
+      },
+      "draft": {
+        "n": 18,
+        "recall_at_5": {
+          "mean": 0.3333,
+          "ci95_lo": 0.1111,
+          "ci95_hi": 0.5556
+        },
+        "mrr": {
+          "mean": 0.2539,
+          "ci95_lo": 0.0903,
+          "ci95_hi": 0.4275
+        }
+      }
+    }
+  }
+}
