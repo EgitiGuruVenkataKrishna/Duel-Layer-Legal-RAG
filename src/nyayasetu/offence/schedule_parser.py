@@ -37,6 +37,13 @@ class BNSSScheduleParser:
         )
         cur.execute("CREATE INDEX IF NOT EXISTS idx_offence_bailable ON offences(bailable)")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_offence_cognizable ON offences(cognizable)")
+        cur.execute(
+            """
+            CREATE VIEW IF NOT EXISTS offence_classification AS
+            SELECT section, cognizable, bailable, compoundable, triable_by, punishment AS punishment_text
+            FROM offences
+            """
+        )
         conn.commit()
         conn.close()
 

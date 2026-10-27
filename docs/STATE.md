@@ -26,7 +26,7 @@ contiguous_numbering_check | MISSING | tests/test_parser.py | not found
 non_empty_body_check | MISSING | tests/test_parser.py | not found
 make_manifest_script | MISSING | scripts/ | scripts/make_manifest.py not in git ls-files; MANIFEST.json exists but generator script absent
 data_sources_yaml | MISSING | data/sources.yaml | file does not exist
-bnss_first_schedule_sqlite | DONE | src/nyayasetu/offence/schedule_parser.py, src/nyayasetu/offence/schedule_store.py | BNSSScheduleParser + SQLite table
+bnss_first_schedule_sqlite | DONE | src/nyayasetu/offence/schedule_parser.py, src/nyayasetu/offence/schedule_store.py | BNSSScheduleParser + SQLite table offences & view offence_classification (455 entries, 5-test suite passing)
 
 ### C. Golden Set
 golden_set_exists | PARTIAL | eval/golden_dev.jsonl, eval/golden_test.jsonl | files exist (100 dev, 150 test rows)
