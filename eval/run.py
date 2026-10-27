@@ -174,10 +174,16 @@ def run_eval(mode: str, rows: list[dict], cfg: dict) -> dict:
 
 
 def summarise(row_results: list[dict]) -> dict:
-    all_r5 = [r["r5"] for r in row_results]
-    all_r10 = [r["r10"] for r in row_results]
-    all_mrr = [r["mrr"] for r in row_results]
-    all_ndcg = [r["ndcg10"] for r in row_results]
+    # Filter to answerable rows for retrieval recall/MRR/nDCG (exclude unanswerable/out-of-scope/unanswerable draft)
+    eval_rows = [r for r in row_results if r.get("answerable", True) and not r.get("needs_review", False)]
+    # Fallback to all answerable rows if filtering leaves none
+    if not eval_rows:
+        eval_rows = [r for r in row_results if r.get("answerable", True)]
+
+    all_r5 = [r["r5"] for r in eval_rows]
+    all_r10 = [r["r10"] for r in eval_rows]
+    all_mrr = [r["mrr"] for r in eval_rows]
+    all_ndcg = [r["ndcg10"] for r in eval_rows]
     lats = [r["latency_ms"] for r in row_results]
 
     def stat(scores):
@@ -190,6 +196,12 @@ def summarise(row_results: list[dict]) -> dict:
         p = r.get("provenance", "auto")
         by_prov.setdefault(p, []).append(r)
 
+    # Per-type breakdown
+    by_type: dict[str, list] = {}
+    for r in row_results:
+        t = r.get("type", "direct_lookup")
+        by_type.setdefault(t, []).append(r)
+
     return {
         "recall_at_5": stat(all_r5),
         "recall_at_10": stat(all_r10),
@@ -197,14 +209,23 @@ def summarise(row_results: list[dict]) -> dict:
         "ndcg_at_10": stat(all_ndcg),
         "latency_p50_ms": round(float(np.percentile(lats, 50)), 1),
         "latency_p95_ms": round(float(np.percentile(lats, 95)), 1),
-        "n": len(row_results),
+        "n_evaluated": len(eval_rows),
+        "n_total": len(row_results),
         "by_provenance": {
             p: {
                 "n": len(rs),
-                "recall_at_5": stat([r["r5"] for r in rs]),
-                "mrr": stat([r["mrr"] for r in rs]),
+                "recall_at_5": stat([r["r5"] for r in rs if r.get("answerable", True)]),
+                "mrr": stat([r["mrr"] for r in rs if r.get("answerable", True)]),
             }
             for p, rs in by_prov.items()
+        },
+        "by_type": {
+            t: {
+                "n": len(rs),
+                "recall_at_5": stat([r["r5"] for r in rs if r.get("answerable", True)]),
+                "mrr": stat([r["mrr"] for r in rs if r.get("answerable", True)]),
+            }
+            for t, rs in by_type.items()
         },
     }
 
@@ -215,9 +236,10 @@ def write_markdown_table(summary: dict, run_id: str, split: str, mode: str) -> s
     r10 = s["recall_at_10"]
     mrr = s["mrr"]
     nd = s["ndcg_at_10"]
+    n_disp = s.get("n_evaluated", s.get("n", 0))
     lines = [
         f"# Eval Results: {run_id}",
-        f"- Split: **{split}** | Mode: **{mode}** | N: **{s['n']}**",
+        f"- Split: **{split}** | Mode: **{mode}** | N (evaluated/total): **{n_disp}/{s.get('n_total', n_disp)}**",
         f"- Generated: {datetime.now(timezone.utc).isoformat()}",
         "",
         "| Metric | Mean | 95% CI |",
