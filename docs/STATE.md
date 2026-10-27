@@ -1,6 +1,6 @@
 # NyayaSetu STATE.md
 # Format: feature | DONE/PARTIAL/MISSING | path | evidence
-# Updated: 2026-10-22 by C0 audit
+# Updated: 2026-10-27 dual-tier + metrics + ChatGPT compare
 
 ## C1 Features
 
@@ -97,20 +97,25 @@ offence_card_script | MISSING | scripts/ | no offline card generation script
 ingredient_matcher | MISSING | src/nyayasetu/ | not implemented
 
 ### F. Generation Graph
-langgraph_graph | PARTIAL | legal_rag/graph/ | legacy graph in legal_rag/; new verified generation graph not in src/nyayasetu/
-guard_node | MISSING | src/nyayasetu/ | not implemented
-sufficiency_check | MISSING | src/nyayasetu/ | not implemented
-pydantic_json_output | MISSING | src/nyayasetu/ | not confirmed
-verify_node_deterministic | PARTIAL | src/nyayasetu/verify/verifier.py | CitationVerifier exists but not wired into a LangGraph node
-render_node | MISSING | src/nyayasetu/ | not implemented
+langgraph_graph | PARTIAL | legal_rag/graph/ | legacy graph retained; production path is DualTierPipeline (no extra LLM router)
+dual_tier_router | DONE | src/nyayasetu/routing/tier_router.py | deterministic tier1/tier2; tests in tests/test_tier.py
+dual_tier_pipeline | DONE | src/nyayasetu/pipeline/dual_tier.py | tier1 exact/keyword/BM25 no Groq; tier2 hybrid+rerank+parent-child+verify+abstain
+answer_metrics | DONE | src/nyayasetu/pipeline/dual_tier.py, src/nyayasetu/api/main.py | citation_validity, groundedness, route, latency, tokens returned with every answer
+chatgpt_compare | DONE | src/nyayasetu/compare/chatgpt.py | POST /api/v1/compare; audits ChatGPT citations against corpus
+streamlit_ui | DONE | app/main.py | Q&A + vs ChatGPT + real eval/results numbers (no fabricated table)
+guard_node | MISSING | src/nyayasetu/ | not implemented as a separate LangGraph node
+sufficiency_check | PARTIAL | src/nyayasetu/pipeline/dual_tier.py | verifier + 0.70 fallback to extractive answer
+pydantic_json_output | MISSING | src/nyayasetu/ | generator is free-text with required [Act, Section] citations
+verify_node_deterministic | DONE | src/nyayasetu/verify/verifier.py | CitationVerifier with Pydantic claims schema, exact quote verification, and 30% abstention rule
+render_node | PARTIAL | src/nyayasetu/pipeline/dual_tier.py | API/Streamlit render metrics + source panel
 
 ### G. Calibration
 calibrate_script | MISSING | eval/calibrate.py | not found
 thresholds_yaml | MISSING | configs/thresholds.yaml | not found
 
 ### H. Tests (C2)
-temporal_truth_table_tests | MISSING | tests/ | not found
-verifier_tests | MISSING | tests/ | no dedicated verifier tests (fabricated id, altered quote)
+temporal_truth_table_tests | DONE | tests/test_temporal.py | test_temporal_truth_table covers all 6 date permutations
+verifier_tests | DONE | tests/test_verifier.py | 5 tests for valid id, fake id, altered quote, 30% rule, near-miss
 provider_fallback_tests | MISSING | tests/ | not found
 degraded_mode_tests | MISSING | tests/ | not found
 cache_hit_tests | MISSING | tests/ | not found

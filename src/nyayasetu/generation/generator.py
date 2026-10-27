@@ -29,6 +29,8 @@ class LegalAnswerGenerator:
         temporal_info: Optional[Dict[str, Any]] = None,
         offence_info: Optional[Dict[str, Any]] = None,
         transition_info: Optional[Dict[str, Any]] = None,
+        use_llm: bool = True,
+        strict_ids: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """
         Synthesizes an answer with statutory citations.
@@ -83,22 +85,22 @@ class LegalAnswerGenerator:
         if extra_context:
             context_str += "\n\n" + "\n\n".join(extra_context)
 
+        allowed = ", ".join(strict_ids) if strict_ids else "only sections present in the evidence"
         sys_prompt = (
-            "You are NyayaSetu, an authoritative Indian Legal Information Assistant. "
-            "You synthesize clear, rigorously source-grounded answers strictly based on the provided statutory context. "
+            "You are NyayaSetu, an Indian criminal-law research assistant. "
+            "Use ONLY the statutory evidence provided. This is not legal advice.\n"
             "Rules:\n"
-            "1. Append exact citation brackets [Act: <Act>, Section <Number>] to your assertions.\n"
-            "2. If the user query cannot be answered based on the legal corpus or asks for illegal/harmful advice, "
-            "clearly state that the query cannot be answered with the available evidence.\n"
-            "3. Highlight critical practical parameters: whether the offence is bailable or non-bailable, cognizable or non-cognizable, "
-            "and triable by which court when applicable.\n"
-            "4. Do NOT hallucinate non-existent sections or legal claims."
+            "1. Every legal assertion must end with a citation of the form [Act: BNS, Section 103].\n"
+            "2. Cite only these section ids: "
+            f"{allowed}. Never invent a section number.\n"
+            "3. If evidence is insufficient, say so and do not guess.\n"
+            "4. Prefer quoting short phrases from the provided text in double quotes.\n"
+            "5. Phrase offence analysis as provisions potentially attracted, never a guilt verdict."
         )
 
-        user_content = f"Query: {query}\n\nStatutory Evidence Context:\n{context_str}\n\nPlease provide a clear, structured legal response:"
+        user_content = f"Query: {query}\n\nStatutory Evidence Context:\n{context_str}\n\nProvide a structured, citation-grounded response:"
 
-        # If Groq client is configured, invoke LLM
-        if self.client:
+        if use_llm and self.client:
             try:
                 response = self.client.chat.completions.create(
                     model=self.model_name,
@@ -171,7 +173,7 @@ class LegalAnswerGenerator:
                 title = doc.get("title", "")
                 page = doc.get("page", "")
                 body = doc.get("text", "")[:350].strip()
-                lines.append(f"**[Source: Act: {act}, Section {sec} ({title}), Page {page}]**")
+                lines.append(f"**[Act: {act}, Section {sec}]** ({title}, page {page})")
                 lines.append(f"{body}...\n")
         else:
             lines.append("Insufficient legal precedent or statutory clarity in the corpus to ground a definitive response.")

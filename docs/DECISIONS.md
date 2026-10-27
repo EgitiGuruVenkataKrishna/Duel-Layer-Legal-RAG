@@ -10,3 +10,5 @@
 2026-10-22 | scripts/make_manifest.py writes MANIFEST from sources.yaml + SHA-256 | MANIFEST.json existed without generator; script needed for reproducibility
 2026-10-22 | tests/fixtures/ 20-section BM25 fixture extracted from BNS processed JSONL | Avoids network; deterministic; CI-safe
 2026-10-22 | eval/results/ directory created; v0_baseline run executed before any retrieval change | C1.D requires baseline first
+2026-10-27 | Dual-tier router is rules-based, not an LLM gateway | Lower hallucination and cost on direct lookups; Groq only on scenario tier
+2026-10-27 | ChatGPT comparison is a live OpenAI call, never used as NyayaSetu's generator | User-requested contrast; Groq remains the only generation provider for grounded answers

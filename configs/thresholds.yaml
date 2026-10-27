@@ -1,0 +1,5 @@
+# Answer-quality gates. Do not tune on the held-out test split.
+citation_validity_verified: 0.70
+citation_validity_abstain: 0.30
+tier1_max_words: 32
+tier2_min_words: 40
