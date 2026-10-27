@@ -324,8 +324,8 @@ def main() -> None:
             "| Mode | Recall@5 | Recall@10 | MRR | nDCG@10 | p50ms | p95ms |",
             "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
         ] + ablation_rows
-        (RESULTS_DIR / "ablation.md").write_text("\n".join(abl_md))
-        print(f"Ablation table → {RESULTS_DIR / 'ablation.md'}")
+        (RESULTS_DIR / "ablation.md").write_text("\n".join(abl_md), encoding="utf-8")
+        print(f"Ablation table -> {RESULTS_DIR / 'ablation.md'}")
 
     if args.split == "test":
         ts = datetime.now(timezone.utc).isoformat()

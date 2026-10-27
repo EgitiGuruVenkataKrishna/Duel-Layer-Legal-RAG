@@ -149,6 +149,16 @@ class ParentChildRetriever:
 
         return results
 
+    def get_parent(self, doc: Dict[str, Any]) -> Dict[str, Any]:
+        """Resolve a doc or child node to its full parent section."""
+        doc_id = doc.get("id") or doc.get("parent_id")
+        if doc_id and doc_id in self.parent_cache:
+            parent = dict(self.parent_cache[doc_id])
+            if "matched_child_nodes" in doc:
+                parent["matched_child_nodes"] = doc["matched_child_nodes"]
+            return parent
+        return doc
+
 
 if __name__ == "__main__":
     retriever = ParentChildRetriever()

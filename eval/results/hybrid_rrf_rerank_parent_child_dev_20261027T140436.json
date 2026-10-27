@@ -1,0 +1,140 @@
+{
+  "run_id": "hybrid_rrf_rerank_parent_child_dev_20261027T140436",
+  "mode": "hybrid_rrf_rerank_parent_child",
+  "split": "dev",
+  "timestamp": "2026-10-27T14:05:40.522364+00:00",
+  "metrics": {
+    "recall_at_5": {
+      "mean": 0.6545,
+      "ci95_lo": 0.5636,
+      "ci95_hi": 0.7364
+    },
+    "recall_at_10": {
+      "mean": 0.6545,
+      "ci95_lo": 0.5725,
+      "ci95_hi": 0.7364
+    },
+    "mrr": {
+      "mean": 0.3977,
+      "ci95_lo": 0.3227,
+      "ci95_hi": 0.4775
+    },
+    "ndcg_at_10": {
+      "mean": 0.4603,
+      "ci95_lo": 0.3862,
+      "ci95_hi": 0.5342
+    },
+    "latency_p50_ms": 527.7,
+    "latency_p95_ms": 851.4,
+    "n_evaluated": 110,
+    "n_total": 110,
+    "by_provenance": {
+      "auto": {
+        "n": 92,
+        "recall_at_5": {
+          "mean": 0.7174,
+          "ci95_lo": 0.6196,
+          "ci95_hi": 0.8043
+        },
+        "mrr": {
+          "mean": 0.4284,
+          "ci95_lo": 0.3487,
+          "ci95_hi": 0.5136
+        }
+      },
+      "draft": {
+        "n": 18,
+        "recall_at_5": {
+          "mean": 0.3333,
+          "ci95_lo": 0.1111,
+          "ci95_hi": 0.5556
+        },
+        "mrr": {
+          "mean": 0.2407,
+          "ci95_lo": 0.0833,
+          "ci95_hi": 0.4074
+        }
+      }
+    },
+    "by_type": {
+      "direct_lookup": {
+        "n": 40,
+        "recall_at_5": {
+          "mean": 0.775,
+          "ci95_lo": 0.65,
+          "ci95_hi": 0.9
+        },
+        "mrr": {
+          "mean": 0.3942,
+          "ci95_lo": 0.2929,
+          "ci95_hi": 0.505
+        }
+      },
+      "transition": {
+        "n": 29,
+        "recall_at_5": {
+          "mean": 0.4828,
+          "ci95_lo": 0.3103,
+          "ci95_hi": 0.6552
+        },
+        "mrr": {
+          "mean": 0.1431,
+          "ci95_lo": 0.0759,
+          "ci95_hi": 0.2259
+        }
+      },
+      "scenario": {
+        "n": 21,
+        "recall_at_5": {
+          "mean": 1.0,
+          "ci95_lo": 1.0,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.9286,
+          "ci95_lo": 0.8571,
+          "ci95_hi": 1.0
+        }
+      },
+      "temporal": {
+        "n": 8,
+        "recall_at_5": {
+          "mean": 0.75,
+          "ci95_lo": 0.375,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.5417,
+          "ci95_lo": 0.2917,
+          "ci95_hi": 0.8125
+        }
+      },
+      "unanswerable": {
+        "n": 10,
+        "recall_at_5": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        },
+        "mrr": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        }
+      },
+      "harmful": {
+        "n": 2,
+        "recall_at_5": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        },
+        "mrr": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        }
+      }
+    }
+  }
+}

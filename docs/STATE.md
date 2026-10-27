@@ -52,13 +52,13 @@ bm25 | DONE | src/nyayasetu/retrieval/bm25_search.py | BM25SearchEngine
 dense_miniLM | DONE | src/nyayasetu/retrieval/dense_search.py | DenseSearchEngine (all-MiniLM-L6-v2)
 hybrid_rrf | DONE | src/nyayasetu/retrieval/hybrid_rrf.py | HybridRRFSearchEngine
 exact_match_router | DONE | src/nyayasetu/retrieval/exact_router.py | ExactMatchRouter with SQLite lookup
-parent_child | DONE | src/nyayasetu/retrieval/parent_child.py | ParentChildRetriever
-bge_m3_embeddings | MISSING | src/nyayasetu/retrieval/ | bge-m3 not present; dense uses MiniLM
-bge_reranker_v2_m3 | MISSING | src/nyayasetu/retrieval/reranker.py | reranker uses ms-marco-MiniLM, not bge-reranker-v2-m3
-retrieval_config_yaml | MISSING | configs/retrieval.yaml | configs/ directory absent
-checkpoint_embeddings | MISSING | src/nyayasetu/retrieval/ | no disk checkpoint logic for embeddings
-ablation_script | MISSING | eval/ | no ablation command; ablation_study.md exists but is manual
-ablation_results_md | MISSING | eval/results/ablation.md | not in eval/results/
+parent_child | DONE | src/nyayasetu/retrieval/parent_child.py | ParentChildRetriever with get_parent method
+bge_m3_embeddings | PARTIAL | src/nyayasetu/retrieval/ | offline environment lacks pre-built faiss_bge_m3 index; dense uses MiniLM
+bge_reranker_v2_m3 | PARTIAL | src/nyayasetu/retrieval/reranker.py | reranker configured with BAAI/bge-reranker-v2-m3; falls back gracefully when offline
+retrieval_config_yaml | DONE | configs/retrieval.yaml | configs/retrieval.yaml exists with all modes and ablation_order
+checkpoint_embeddings | PARTIAL | src/nyayasetu/retrieval/dense_search.py | FAISS index stored in data/processed/
+ablation_script | DONE | eval/run.py | --ablation flag runs all configured retrieval modes
+ablation_results_md | DONE | eval/results/ablation.md | auto-generated comparison table produced on dev split
 
 ### F. Tests (C1)
 test_parser | DONE | tests/test_parser.py | section counts test present

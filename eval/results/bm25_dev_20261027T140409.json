@@ -1,0 +1,140 @@
+{
+  "run_id": "bm25_dev_20261027T140409",
+  "mode": "bm25",
+  "split": "dev",
+  "timestamp": "2026-10-27T14:04:10.764621+00:00",
+  "metrics": {
+    "recall_at_5": {
+      "mean": 0.8545,
+      "ci95_lo": 0.7818,
+      "ci95_hi": 0.9182
+    },
+    "recall_at_10": {
+      "mean": 0.8818,
+      "ci95_lo": 0.8182,
+      "ci95_hi": 0.9364
+    },
+    "mrr": {
+      "mean": 0.4588,
+      "ci95_lo": 0.3935,
+      "ci95_hi": 0.5277
+    },
+    "ndcg_at_10": {
+      "mean": 0.562,
+      "ci95_lo": 0.5014,
+      "ci95_hi": 0.6236
+    },
+    "latency_p50_ms": 8.3,
+    "latency_p95_ms": 13.9,
+    "n_evaluated": 110,
+    "n_total": 110,
+    "by_provenance": {
+      "auto": {
+        "n": 92,
+        "recall_at_5": {
+          "mean": 0.9457,
+          "ci95_lo": 0.9022,
+          "ci95_hi": 0.9891
+        },
+        "mrr": {
+          "mean": 0.4793,
+          "ci95_lo": 0.4212,
+          "ci95_hi": 0.5428
+        }
+      },
+      "draft": {
+        "n": 18,
+        "recall_at_5": {
+          "mean": 0.3889,
+          "ci95_lo": 0.1667,
+          "ci95_hi": 0.6111
+        },
+        "mrr": {
+          "mean": 0.3537,
+          "ci95_lo": 0.1555,
+          "ci95_hi": 0.5648
+        }
+      }
+    },
+    "by_type": {
+      "direct_lookup": {
+        "n": 40,
+        "recall_at_5": {
+          "mean": 0.975,
+          "ci95_lo": 0.925,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.4679,
+          "ci95_lo": 0.3754,
+          "ci95_hi": 0.5692
+        }
+      },
+      "transition": {
+        "n": 29,
+        "recall_at_5": {
+          "mean": 0.931,
+          "ci95_lo": 0.8276,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.3178,
+          "ci95_lo": 0.2592,
+          "ci95_hi": 0.3954
+        }
+      },
+      "scenario": {
+        "n": 21,
+        "recall_at_5": {
+          "mean": 1.0,
+          "ci95_lo": 1.0,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.7698,
+          "ci95_lo": 0.6508,
+          "ci95_hi": 0.8889
+        }
+      },
+      "temporal": {
+        "n": 8,
+        "recall_at_5": {
+          "mean": 0.875,
+          "ci95_lo": 0.625,
+          "ci95_hi": 1.0
+        },
+        "mrr": {
+          "mean": 0.7958,
+          "ci95_lo": 0.4958,
+          "ci95_hi": 1.0
+        }
+      },
+      "unanswerable": {
+        "n": 10,
+        "recall_at_5": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        },
+        "mrr": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        }
+      },
+      "harmful": {
+        "n": 2,
+        "recall_at_5": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        },
+        "mrr": {
+          "mean": 0.0,
+          "ci95_lo": 0.0,
+          "ci95_hi": 0.0
+        }
+      }
+    }
+  }
+}
