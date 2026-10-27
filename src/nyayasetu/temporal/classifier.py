@@ -129,6 +129,7 @@ class TemporalLegalityEngine:
             "procedural_reason": procedural_reason,
             "evidence_law": evidence_law,
             "constitutional_basis": "Article 20(1) Constitution of India (Bar against ex-post facto penal laws) & Section 531 BNSS",
+            "status": "draft_pending_review",
         }
 
     @classmethod

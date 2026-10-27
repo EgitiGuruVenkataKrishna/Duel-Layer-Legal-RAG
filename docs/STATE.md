@@ -84,9 +84,9 @@ concordance_parser | MISSING | src/nyayasetu/transition/ | no parser for concord
 transition_golden_questions | MISSING | eval/golden_dev.jsonl | no transition type rows found
 
 ### C. Temporal Engine
-temporal_rules | PARTIAL | src/nyayasetu/temporal/classifier.py | TemporalLegalityEngine exists; not a pure function with the exact spec output dataclass; status='draft_pending_review' not set
-temporal_truth_table_tests | MISSING | tests/ | no temporal truth-table unit tests found
-legal_review_doc | MISSING | docs/legal_review.md | not found
+temporal_rules | DONE | src/nyayasetu/temporal/classifier.py | TemporalLegalityEngine with pure function evaluate(), status='draft_pending_review'
+temporal_truth_table_tests | DONE | tests/test_temporal.py | test_temporal_truth_table covers all 6 date permutations
+legal_review_doc | DONE | docs/legal_review.md | documentation and empty human legal review sign-off block
 
 ### D. Offence Cards
 priority_sections_yaml | MISSING | data/priority_sections.yaml | not found
