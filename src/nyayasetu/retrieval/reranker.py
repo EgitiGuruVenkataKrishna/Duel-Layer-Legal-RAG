@@ -31,11 +31,19 @@ class Reranker:
 
     def _load_model(self):
         if self.model is None:
-            try:
-                self.model = CrossEncoder(self.model_name)
-            except Exception as e:
-                print(f"Warning: Could not load CrossEncoder {self.model_name}: {e}. Falling back to pass-through.")
-                self.model = None
+            # Try offline local cache first with configured model, then cached fallback
+            for m in [self.model_name, "cross-encoder/ms-marco-MiniLM-L-6-v2"]:
+                try:
+                    self.model = CrossEncoder(m, local_files_only=True)
+                    break
+                except Exception:
+                    continue
+            if self.model is None:
+                try:
+                    self.model = CrossEncoder(self.model_name)
+                except Exception as e:
+                    print(f"Warning: Could not load CrossEncoder {self.model_name}: {e}. Falling back to pass-through.")
+                    self.model = None
 
     def rerank(
         self, query: str, candidates: List[Tuple[Dict[str, Any], float]], top_k: int = 5
@@ -53,10 +61,16 @@ class Reranker:
             pairs.append([query, doc_text])
 
         try:
+            import math
             scores = self.model.predict(pairs)
             scored_candidates = []
             for idx, score in enumerate(scores):
-                scored_candidates.append((candidates[idx][0], float(score)))
+                # Sigmoid normalization into [0.0, 1.0] for consistent similarity metrics
+                try:
+                    norm_score = 1.0 / (1.0 + math.exp(-float(score)))
+                except OverflowError:
+                    norm_score = 0.0 if float(score) < 0 else 1.0
+                scored_candidates.append((candidates[idx][0], float(norm_score)))
 
             scored_candidates.sort(key=lambda x: x[1], reverse=True)
             return scored_candidates[:top_k]

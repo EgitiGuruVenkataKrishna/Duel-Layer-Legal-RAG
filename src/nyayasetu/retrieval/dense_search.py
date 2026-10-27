@@ -38,7 +38,10 @@ class DenseSearchEngine:
     def _load_model(self):
         if self.model is None:
             print(f"Loading dense embedding model: {self.model_name}...")
-            self.model = SentenceTransformer(self.model_name)
+            try:
+                self.model = SentenceTransformer(self.model_name, local_files_only=True)
+            except Exception:
+                self.model = SentenceTransformer(self.model_name)
 
     def build_index(self):
         self._load_model()
