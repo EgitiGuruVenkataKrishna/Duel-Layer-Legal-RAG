@@ -1,0 +1,124 @@
+[
+  {
+    "category": "Direct Question (Tier 1)",
+    "query": "What is BNS 103?",
+    "expected_tier": "tier1",
+    "classified_tier": "tier1",
+    "tier_passed": true,
+    "route_type": "exact_match_router",
+    "latency_ms": 4.9,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 1.0,
+    "avg_similarity": 1.0,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "BNS 103: Punishment for murder."
+    ],
+    "answer_excerpt": "### Offence Classification (BNSS First Schedule)\n- **Section**: 103(1) (BNS)\n- **Offence**: Murder\n- **Punishment**: Death or imprisonment for\n- **Cognizable**: Cognizable\n- **Bailable**: Non-bailable\n- **Triable By**: Court of Session\n\n### Primary Statutory Evidence\n**[Act: BNS, Section 103]** (Punishment for murder., page 34)\n*Similarity: 1.0000"
+  },
+  {
+    "category": "Direct Question (Tier 1)",
+    "query": "what is the thief related section",
+    "expected_tier": "tier1",
+    "classified_tier": "tier1",
+    "tier_passed": true,
+    "route_type": "keyword_title_lookup",
+    "latency_ms": 17.97,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 1.0,
+    "avg_similarity": 1.0,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "BNS 134: Assault or criminal force in attempt to commit theft of property carried by a person.",
+      "BNS 303: Theft.",
+      "BNS 305: Theft in a dwelling house, or means of transportation or place of worship, etc."
+    ],
+    "answer_excerpt": "### Primary Statutory Evidence\n**[Act: BNS, Section 134]** (Assault or criminal force in attempt to commit theft of property carried by a person., page 44)\n*Similarity: 1.0000 (keyword)*\n134. Whoever assaults or uses criminal force to any person, in attempting to commit\ntheft on any property which that person is then wearing or carrying, shall be p"
+  },
+  {
+    "category": "Direct Question (Tier 1)",
+    "query": "Punishment under Section 302 IPC",
+    "expected_tier": "tier1",
+    "classified_tier": "tier1",
+    "tier_passed": true,
+    "route_type": "exact_match_router",
+    "latency_ms": 1.5,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 1.0,
+    "avg_similarity": 1.0,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "IPC 302: Punishment for murder"
+    ],
+    "answer_excerpt": "### Statutory Transition Details\n- **Old Provision**: IPC Section 302\n- **New Provision**: BNS Section 103(1)\n- **Subject**: Murder\n- **Key Differences**: Murder punishment moved from IPC 302 to BNS 103(1). BNS 103(2) introduces separate severe punishment for murder committed by a group of five or more persons on grounds of race, caste, sex, or pla"
+  },
+  {
+    "category": "Scenario Question (Tier 2)",
+    "query": "Yesterday police registered an FIR after a phone was snatched from a parked scooter. What provisions may be attracted?",
+    "expected_tier": "tier2",
+    "classified_tier": "tier2",
+    "tier_passed": true,
+    "route_type": "tier2_hybrid_rerank_parent_child",
+    "latency_ms": 14475.31,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 6.927433230062602e-05,
+    "avg_similarity": 0.0,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "BNSS 503: Procedure by police upon seizure of property.",
+      "BNSS 186: When officer in charge of police station may require another to issue search- warrant.",
+      "BNSS 171: Prevention of injury to public property."
+    ],
+    "answer_excerpt": "### Primary Statutory Evidence\n**[Act: BNSS, Section 503]** (Procedure by police upon seizure of property., page 151)\n*Similarity: 0.0001 (hybrid_rrf_rerank_parent_child)*\n503. (1) Whenever the seizure of property by any police officer is reported to a\nMagistrate under the provisions of this Sanhita, and such property is not produced before\na Crimi"
+  },
+  {
+    "category": "Scenario Question (Tier 2)",
+    "query": "A group of five persons attacked and beat a person to death in broad daylight over a dispute. What offences are made out?",
+    "expected_tier": "tier2",
+    "classified_tier": "tier2",
+    "tier_passed": true,
+    "route_type": "tier2_hybrid_rerank_parent_child",
+    "latency_ms": 3679.66,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 0.17207232096717653,
+    "avg_similarity": 0.0354,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "BNS 103: Punishment for murder.",
+      "BNS 310: Dacoity.",
+      "BNS 135: Assault or criminal force in attempt to wrongfully confine a person."
+    ],
+    "answer_excerpt": "### Primary Statutory Evidence\n**[Act: BNS, Section 103]** (Punishment for murder., page 34)\n*Similarity: 0.1721 (hybrid_rrf_rerank_parent_child)*\n103. (1) Whoever commits murder shall be punished with death or imprisonment for\nlife, and shall also be liable to fine.\n(2) When a group of five or more persons acting in concert commits murder on the\ng"
+  },
+  {
+    "category": "Scenario Question (Tier 2)",
+    "query": "Suppose someone cheated an elderly person of their life savings through a fraudulent investment scheme. What legal provisions apply?",
+    "expected_tier": "tier2",
+    "classified_tier": "tier2",
+    "tier_passed": true,
+    "route_type": "tier2_hybrid_rerank_parent_child",
+    "latency_ms": 17100.27,
+    "model": "deterministic-evidence-synthesizer",
+    "top_similarity": 0.049268047945242616,
+    "avg_similarity": 0.0122,
+    "citation_validity": 1.0,
+    "groundedness": 1.0,
+    "status": "verified",
+    "retrieved_sections": [
+      "BNS 321: Dishonestly or fraudulently preventing debt being available for creditors.",
+      "BNS 320: Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors.",
+      "BNS 343: Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security."
+    ],
+    "answer_excerpt": "### Primary Statutory Evidence\n**[Act: BNS, Section 321]** (Dishonestly or fraudulently preventing debt being available for creditors., page 87)\n*Similarity: 0.0493 (hybrid_rrf_rerank_parent_child)*\n321. Whoever dishonestly or fraudulently prevents any debt or demand due to himself\nor to any other person from being made available according to law f"
+  }
+]

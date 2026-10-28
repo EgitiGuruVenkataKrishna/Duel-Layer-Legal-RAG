@@ -123,7 +123,7 @@ class LegalAnswerGenerator:
                         {"role": "user", "content": user_content},
                     ],
                     temperature=0.0,
-                    max_tokens=1536,
+                    max_tokens=250,
                 )
                 answer = response.choices[0].message.content
                 tokens_used = response.usage.total_tokens if response.usage else 0
